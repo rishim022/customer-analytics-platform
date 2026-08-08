@@ -216,3 +216,23 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project generated data
+data/
+*.parquet
+*.csv
+
+# AWS credentials / local configuration
+.aws/
+*.pem
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python virtual environment
+.venv/
+
+# Environment variables
+.env
+.env.*
+!.env.example
