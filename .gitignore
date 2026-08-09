@@ -236,3 +236,5 @@ data/
 .env
 .env.*
 !.env.example
+# dbt logs
+/dbt/logs/

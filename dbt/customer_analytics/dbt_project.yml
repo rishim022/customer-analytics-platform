@@ -1,0 +1,16 @@
+name: customer_analytics
+
+profile: customer_analytics
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  customer_analytics:
+    staging:
+      +materialized: view

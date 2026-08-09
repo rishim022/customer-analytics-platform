@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: supportiq
+    database: awsdatacatalog
+    schema: supportiq_raw
+
+    tables:
+      - name: agents
+      - name: companies
+      - name: contacts
+      - name: customer_satisfaction
+      - name: customers
+      - name: feature_usage
+      - name: invoices
+      - name: payments
+      - name: plans
+      - name: product_events
+      - name: sessions
+      - name: subscriptions
+      - name: ticket_events
+      - name: tickets

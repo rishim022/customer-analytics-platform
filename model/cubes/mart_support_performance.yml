@@ -1,0 +1,92 @@
+cubes:
+  - name: mart_support_performance
+    sql_table: public.mart_support_performance
+    data_source: default
+
+    joins: []
+
+    dimensions:
+      - name: agent_country
+        sql: agent_country
+        type: string
+
+      - name: agent_email
+        sql: agent_email
+        type: string
+
+      - name: agent_first_name
+        sql: agent_first_name
+        type: string
+
+      - name: agent_id
+        sql: agent_id
+        type: string
+
+      - name: agent_last_name
+        sql: agent_last_name
+        type: string
+
+      - name: agent_status
+        sql: agent_status
+        type: string
+
+      - name: agent_team
+        sql: agent_team
+        type: string
+
+      - name: category
+        sql: category
+        type: string
+
+      - name: channel
+        sql: channel
+        type: string
+
+      - name: customer_id
+        sql: customer_id
+        type: string
+
+      - name: has_first_response
+        sql: has_first_response
+        type: boolean
+
+      - name: is_resolved
+        sql: is_resolved
+        type: boolean
+
+      - name: priority
+        sql: priority
+        type: string
+
+      - name: status
+        sql: status
+        type: string
+
+      - name: subject
+        sql: subject
+        type: string
+
+      - name: ticket_id
+        sql: ticket_id
+        type: string
+
+      - name: created_at
+        sql: created_at
+        type: time
+
+      - name: first_response_at
+        sql: first_response_at
+        type: time
+
+      - name: resolved_at
+        sql: resolved_at
+        type: time
+
+    measures:
+      - name: count
+        type: count
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here.
+      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
+

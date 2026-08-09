@@ -1,0 +1,112 @@
+cubes:
+  - name: mart_customer_360
+    sql_table: public.mart_customer_360
+    data_source: default
+
+    joins: []
+
+    dimensions:
+      - name: company_city
+        sql: company_city
+        type: string
+
+      - name: company_country
+        sql: company_country
+        type: string
+
+      - name: company_id
+        sql: company_id
+        type: string
+
+      - name: company_name
+        sql: company_name
+        type: string
+
+      - name: company_size
+        sql: company_size
+        type: string
+
+      - name: customer_country
+        sql: customer_country
+        type: string
+
+      - name: customer_id
+        sql: customer_id
+        type: string
+
+      - name: customer_status
+        sql: customer_status
+        type: string
+
+      - name: email
+        sql: email
+        type: string
+
+      - name: first_name
+        sql: first_name
+        type: string
+
+      - name: industry
+        sql: industry
+        type: string
+
+      - name: job_title
+        sql: job_title
+        type: string
+
+      - name: last_name
+        sql: last_name
+        type: string
+
+      - name: customer_created_at
+        sql: customer_created_at
+        type: time
+
+      - name: first_feature_usage_date
+        sql: first_feature_usage_date
+        type: time
+
+      - name: first_product_event_at
+        sql: first_product_event_at
+        type: time
+
+      - name: first_session_at
+        sql: first_session_at
+        type: time
+
+      - name: first_ticket_at
+        sql: first_ticket_at
+        type: time
+
+      - name: latest_feature_usage_date
+        sql: latest_feature_usage_date
+        type: time
+
+      - name: latest_product_event_at
+        sql: latest_product_event_at
+        type: time
+
+      - name: latest_session_at
+        sql: latest_session_at
+        type: time
+
+      - name: latest_ticket_at
+        sql: latest_ticket_at
+        type: time
+
+    measures:
+      - name: count
+        type: count
+
+      - name: total_invoiced_amount
+        sql: total_invoiced_amount
+        type: sum
+
+      - name: total_paid_invoice_amount
+        sql: total_paid_invoice_amount
+        type: sum
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here.
+      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
+

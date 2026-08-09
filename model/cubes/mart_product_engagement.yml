@@ -1,0 +1,44 @@
+cubes:
+  - name: mart_product_engagement
+    sql_table: public.mart_product_engagement
+    data_source: default
+
+    joins: []
+
+    dimensions:
+      - name: customer_id
+        sql: customer_id
+        type: string
+
+      - name: feature_name
+        sql: feature_name
+        type: string
+
+      - name: first_event_at
+        sql: first_event_at
+        type: time
+
+      - name: first_usage_date
+        sql: first_usage_date
+        type: time
+
+      - name: latest_event_at
+        sql: latest_event_at
+        type: time
+
+      - name: latest_usage_date
+        sql: latest_usage_date
+        type: time
+
+    measures:
+      - name: count
+        type: count
+
+      - name: total_usage_count
+        sql: total_usage_count
+        type: sum
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here.
+      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
+

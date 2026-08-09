@@ -1,0 +1,101 @@
+version: 2
+
+models:
+
+  - name: stg_agents
+    description: "Staged support agents."
+    columns:
+      - name: agent_id
+        tests:
+          - not_null
+
+  - name: stg_companies
+    description: "Staged customer companies."
+    columns:
+      - name: company_id
+        tests:
+          - not_null
+
+  - name: stg_contacts
+    description: "Staged customer contacts."
+    columns:
+      - name: contact_id
+        tests:
+          - not_null
+
+  - name: stg_customer_satisfaction
+    description: "Staged customer satisfaction responses."
+    columns:
+      - name: csat_id
+        tests:
+          - not_null
+
+  - name: stg_customers
+    description: "Staged customers."
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+
+  - name: stg_feature_usage
+    description: "Staged customer feature usage."
+    columns:
+      - name: feature_usage_id
+        tests:
+          - not_null
+
+  - name: stg_invoices
+    description: "Staged invoices."
+    columns:
+      - name: invoice_id
+        tests:
+          - not_null
+
+  - name: stg_payments
+    description: "Staged payments."
+    columns:
+      - name: payment_id
+        tests:
+          - not_null
+
+  - name: stg_plans
+    description: "Staged subscription plans."
+    columns:
+      - name: plan_id
+        tests:
+          - not_null
+
+  - name: stg_product_events
+    description: "Staged product events."
+    columns:
+      - name: event_id
+        tests:
+          - not_null
+
+  - name: stg_sessions
+    description: "Staged customer sessions."
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+
+  - name: stg_subscriptions
+    description: "Staged subscriptions."
+    columns:
+      - name: subscription_id
+        tests:
+          - not_null
+
+  - name: stg_ticket_events
+    description: "Staged ticket events."
+    columns:
+      - name: ticket_event_id
+        tests:
+          - not_null
+
+  - name: stg_tickets
+    description: "Staged support tickets."
+    columns:
+      - name: ticket_id
+        tests:
+          - not_null

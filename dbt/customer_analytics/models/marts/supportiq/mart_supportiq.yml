@@ -1,0 +1,50 @@
+version: 2
+
+models:
+
+  - name: mart_customer_360
+    description: "Customer-level 360-degree analytics mart."
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: mart_customer_revenue
+    description: "Customer-level revenue and billing analytics mart."
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: mart_customer_health
+    description: "Customer-level health and engagement analytics mart."
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: mart_support_performance
+    description: "Ticket-level support performance analytics mart."
+    columns:
+      - name: ticket_id
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        tests:
+          - not_null
+
+  - name: mart_product_engagement
+    description: "Customer and feature-level product engagement mart."
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: feature_name
+        tests:
+          - not_null

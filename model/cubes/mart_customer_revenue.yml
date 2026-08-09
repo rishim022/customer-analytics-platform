@@ -1,0 +1,32 @@
+cubes:
+  - name: mart_customer_revenue
+    sql_table: public.mart_customer_revenue
+    data_source: default
+
+    joins: []
+
+    dimensions:
+      - name: company_id
+        sql: company_id
+        type: string
+
+      - name: customer_id
+        sql: customer_id
+        type: string
+
+    measures:
+      - name: count
+        type: count
+
+      - name: total_invoiced_amount
+        sql: total_invoiced_amount
+        type: sum
+
+      - name: total_paid_invoice_amount
+        sql: total_paid_invoice_amount
+        type: sum
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here.
+      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
+

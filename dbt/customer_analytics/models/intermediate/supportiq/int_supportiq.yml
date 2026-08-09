@@ -1,0 +1,175 @@
+version: 2
+
+models:
+
+  - name: int_customers
+    description: "Customer-level enriched dimension combining customers with company attributes."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer."
+        tests:
+          - not_null
+          - unique
+
+      - name: company_id
+        description: "Identifier of the customer's company."
+
+  - name: int_subscriptions
+    description: "Subscription-level model enriched with plan and company attributes."
+    columns:
+      - name: subscription_id
+        description: "Unique identifier for the subscription."
+        tests:
+          - not_null
+          - unique
+
+      - name: company_id
+        tests:
+          - not_null
+
+      - name: plan_id
+        tests:
+          - not_null
+
+  - name: int_tickets
+    description: "Support ticket-level model enriched with assigned agent attributes."
+    columns:
+      - name: ticket_id
+        description: "Unique identifier for the support ticket."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        tests:
+          - not_null
+
+  - name: int_invoices
+    description: "Invoice-level model enriched with subscription and plan attributes."
+    columns:
+      - name: invoice_id
+        description: "Unique identifier for the invoice."
+        tests:
+          - not_null
+          - unique
+
+      - name: subscription_id
+        tests:
+          - not_null
+
+  - name: int_payments
+    description: "Payment-level model enriched with invoice and subscription attributes."
+    columns:
+      - name: payment_id
+        description: "Unique identifier for the payment."
+        tests:
+          - not_null
+          - unique
+
+      - name: invoice_id
+        tests:
+          - not_null
+
+  - name: int_product_events
+    description: "Incremental product event history at the event level."
+    columns:
+      - name: event_id
+        description: "Unique identifier for the product event."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null
+
+  - name: int_ticket_events
+    description: "Incremental ticket event history at the event level."
+    columns:
+      - name: ticket_event_id
+        description: "Unique identifier for the ticket event."
+        tests:
+          - not_null
+          - unique
+
+      - name: ticket_id
+        tests:
+          - not_null
+
+      - name: event_timestamp
+        tests:
+          - not_null
+
+  - name: int_feature_usage
+    description: "Incremental customer feature usage history."
+    columns:
+      - name: feature_usage_id
+        description: "Unique identifier for the feature usage record."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: usage_date
+        tests:
+          - not_null
+
+  - name: int_sessions
+    description: "Incremental customer session history."
+    columns:
+      - name: session_id
+        description: "Unique identifier for the customer session."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: session_start
+        tests:
+          - not_null
+
+  - name: int_customer_usage
+    description: "Customer-level aggregation of feature usage, product events, and sessions."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer."
+        tests:
+          - not_null
+          - unique
+
+  - name: int_customer_support
+    description: "Customer-level aggregation of support ticket activity and response metrics."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer."
+        tests:
+          - not_null
+          - unique
+
+  - name: int_customer_financials
+    description: "Customer-level aggregation of subscription and invoice financial metrics."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer."
+        tests:
+          - not_null
+          - unique
+
+  - name: int_customer_360
+    description: "Customer-level 360-degree view combining customer, company, support, usage, and financial metrics."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer."
+        tests:
+          - not_null
+          - unique
