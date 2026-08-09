@@ -1,44 +1,140 @@
 cubes:
+
   - name: mart_product_engagement
+    description: >
+      Feature-level product engagement view containing customer activity,
+      feature usage, event timing, and usage counts.
+
     sql_table: public.mart_product_engagement
     data_source: default
+
+    meta:
+      business_grain: customer and feature
+      entity: product_engagement
+      synonyms:
+        - product engagement
+        - feature engagement
+        - product usage
+        - feature usage
+        - customer product activity
 
     joins: []
 
     dimensions:
+
       - name: customer_id
         sql: customer_id
         type: string
+        description: >
+          Unique identifier for the customer associated with the
+          product engagement activity.
+        meta:
+          synonyms:
+            - customer id
+            - customer identifier
+            - client id
+            - account id
+          category: customer
 
       - name: feature_name
         sql: feature_name
         type: string
+        description: >
+          Name of the product feature associated with the engagement
+          activity.
+        meta:
+          synonyms:
+            - feature
+            - product feature
+            - feature name
+            - functionality
+          category: product
 
       - name: first_event_at
         sql: first_event_at
         type: time
+        description: >
+          Timestamp of the customer's first recorded event for the
+          associated feature.
+        meta:
+          synonyms:
+            - first feature event
+            - initial feature event
+            - first event
+            - first feature activity
+          category: engagement
 
       - name: first_usage_date
         sql: first_usage_date
         type: time
+        description: >
+          Date of the customer's first recorded usage of the
+          associated feature.
+        meta:
+          synonyms:
+            - first feature usage
+            - initial feature usage
+            - first feature use
+            - feature adoption date
+          category: engagement
 
       - name: latest_event_at
         sql: latest_event_at
         type: time
+        description: >
+          Timestamp of the customer's most recent recorded event for
+          the associated feature.
+        meta:
+          synonyms:
+            - latest feature event
+            - most recent feature event
+            - last feature event
+            - latest feature activity
+          category: engagement
 
       - name: latest_usage_date
         sql: latest_usage_date
         type: time
+        description: >
+          Date of the customer's most recent recorded usage of the
+          associated feature.
+        meta:
+          synonyms:
+            - latest feature usage
+            - most recent feature usage
+            - last feature use
+            - latest feature activity
+          category: engagement
 
     measures:
+
       - name: count
         type: count
+        description: >
+          Count of customer-feature records in the current query context.
+        meta:
+          synonyms:
+            - engagement record count
+            - feature engagement count
+            - number of records
+          category: engagement
 
       - name: total_usage_count
         sql: total_usage_count
         type: sum
+        description: >
+          Sum of recorded feature usage counts across the selected
+          customer and feature records.
+        meta:
+          synonyms:
+            - total feature usage
+            - usage count
+            - feature usage count
+            - number of feature uses
+            - total uses
+          category: engagement
 
     pre_aggregations:
       # Pre-aggregation definitions go here.
-      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
-
+      # Learn more in the documentation:
+      # https://cube.dev/docs/caching/pre-aggregations/getting-started

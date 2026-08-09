@@ -1,92 +1,282 @@
 cubes:
+
   - name: mart_support_performance
+    description: >
+      Support performance view containing customer support ticket,
+      agent, ticket status, priority, channel, category, response,
+      and resolution information.
+
     sql_table: public.mart_support_performance
     data_source: default
+
+    meta:
+      business_grain: support ticket
+      entity: support_ticket
+      synonyms:
+        - support performance
+        - support tickets
+        - customer support
+        - ticket performance
+        - support operations
+        - help desk
 
     joins: []
 
     dimensions:
+
       - name: agent_country
         sql: agent_country
         type: string
+        description: >
+          Country associated with the support agent handling the ticket.
+        meta:
+          synonyms:
+            - agent country
+            - support agent country
+            - agent location
+          category: agent
 
       - name: agent_email
         sql: agent_email
         type: string
+        description: >
+          Email address of the support agent associated with the ticket.
+        meta:
+          synonyms:
+            - agent email
+            - support agent email
+          category: agent
 
       - name: agent_first_name
         sql: agent_first_name
         type: string
+        description: >
+          First name of the support agent associated with the ticket.
+        meta:
+          synonyms:
+            - agent first name
+            - support agent first name
+          category: agent
 
       - name: agent_id
         sql: agent_id
         type: string
+        description: >
+          Unique identifier for the support agent associated with the ticket.
+        meta:
+          synonyms:
+            - agent id
+            - agent identifier
+            - support agent id
+          category: agent
 
       - name: agent_last_name
         sql: agent_last_name
         type: string
+        description: >
+          Last name of the support agent associated with the ticket.
+        meta:
+          synonyms:
+            - agent last name
+            - support agent last name
+          category: agent
 
       - name: agent_status
         sql: agent_status
         type: string
+        description: >
+          Status of the support agent associated with the ticket.
+        meta:
+          synonyms:
+            - agent status
+            - support agent status
+          category: agent
 
       - name: agent_team
         sql: agent_team
         type: string
+        description: >
+          Team to which the support agent associated with the ticket
+          belongs.
+        meta:
+          synonyms:
+            - agent team
+            - support team
+            - support agent team
+            - team
+          category: agent
 
       - name: category
         sql: category
         type: string
+        description: >
+          Category assigned to the support ticket.
+        meta:
+          synonyms:
+            - ticket category
+            - support category
+            - issue category
+            - ticket type
+          category: ticket
 
       - name: channel
         sql: channel
         type: string
+        description: >
+          Support channel through which the ticket was created or handled.
+        meta:
+          synonyms:
+            - support channel
+            - ticket channel
+            - contact channel
+            - communication channel
+          category: ticket
 
       - name: customer_id
         sql: customer_id
         type: string
+        description: >
+          Unique identifier for the customer associated with the support
+          ticket.
+        meta:
+          synonyms:
+            - customer id
+            - customer identifier
+            - client id
+            - account id
+          category: customer
 
       - name: has_first_response
         sql: has_first_response
         type: boolean
+        description: >
+          Indicates whether the support ticket has a recorded first response.
+        meta:
+          synonyms:
+            - received first response
+            - has response
+            - first response exists
+            - responded
+          category: response
 
       - name: is_resolved
         sql: is_resolved
         type: boolean
+        description: >
+          Indicates whether the support ticket is marked as resolved.
+        meta:
+          synonyms:
+            - resolved
+            - ticket resolved
+            - resolution status
+            - resolved ticket
+          category: resolution
 
       - name: priority
         sql: priority
         type: string
+        description: >
+          Priority assigned to the support ticket.
+        meta:
+          synonyms:
+            - ticket priority
+            - support priority
+            - issue priority
+          category: ticket
 
       - name: status
         sql: status
         type: string
+        description: >
+          Current status of the support ticket.
+        meta:
+          synonyms:
+            - ticket status
+            - support ticket status
+            - issue status
+          category: ticket
 
       - name: subject
         sql: subject
         type: string
+        description: >
+          Subject or title associated with the support ticket.
+        meta:
+          synonyms:
+            - ticket subject
+            - ticket title
+            - issue title
+            - support issue
+          category: ticket
 
       - name: ticket_id
         sql: ticket_id
         type: string
+        description: >
+          Unique identifier for the support ticket.
+        meta:
+          synonyms:
+            - ticket id
+            - ticket identifier
+            - support ticket id
+            - case id
+          category: ticket
 
       - name: created_at
         sql: created_at
         type: time
+        description: >
+          Timestamp when the support ticket was created.
+        meta:
+          synonyms:
+            - ticket creation time
+            - ticket created date
+            - ticket creation date
+            - created date
+          category: ticket
 
       - name: first_response_at
         sql: first_response_at
         type: time
+        description: >
+          Timestamp of the first recorded response to the support ticket.
+        meta:
+          synonyms:
+            - first response time
+            - first response timestamp
+            - initial response time
+            - first reply time
+          category: response
 
       - name: resolved_at
         sql: resolved_at
         type: time
+        description: >
+          Timestamp when the support ticket was resolved.
+        meta:
+          synonyms:
+            - resolution time
+            - resolved date
+            - resolution date
+            - ticket resolution timestamp
+          category: resolution
 
     measures:
+
       - name: count
         type: count
+        description: >
+          Count of support ticket records in the current query context.
+        meta:
+          synonyms:
+            - ticket count
+            - number of tickets
+            - support ticket volume
+            - ticket volume
+            - number of support cases
+          category: support
 
     pre_aggregations:
       # Pre-aggregation definitions go here.
-      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
-
+      # Learn more in the documentation:
+      # https://cube.dev/docs/caching/pre-aggregations/getting-started

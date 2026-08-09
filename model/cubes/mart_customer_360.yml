@@ -1,112 +1,321 @@
 cubes:
+
   - name: mart_customer_360
+    description: >
+      Customer-level 360-degree view combining customer profile,
+      company information, financial invoice activity, product usage,
+      session activity, and support ticket activity.
+
     sql_table: public.mart_customer_360
     data_source: default
+
+    meta:
+      business_grain: one row per customer
+      entity: customer
+      synonyms:
+        - customer
+        - client
+        - account
 
     joins: []
 
     dimensions:
+
       - name: company_city
         sql: company_city
         type: string
+        description: >
+          City associated with the customer's company.
+        meta:
+          synonyms:
+            - company city
+            - company location
+            - business city
 
       - name: company_country
         sql: company_country
         type: string
+        description: >
+          Country associated with the customer's company.
+        meta:
+          synonyms:
+            - company country
+            - business country
+            - organization country
 
       - name: company_id
         sql: company_id
         type: string
+        description: >
+          Unique identifier for the customer's company.
+        meta:
+          synonyms:
+            - company identifier
+            - organization id
+            - account company id
 
       - name: company_name
         sql: company_name
         type: string
+        description: >
+          Name of the customer's company.
+        meta:
+          synonyms:
+            - company
+            - organization
+            - account company
+            - business name
 
       - name: company_size
         sql: company_size
         type: string
+        description: >
+          Size classification of the customer's company.
+        meta:
+          synonyms:
+            - company size
+            - organization size
+            - business size
 
       - name: customer_country
         sql: customer_country
         type: string
+        description: >
+          Country associated with the customer.
+        meta:
+          synonyms:
+            - customer country
+            - client country
+            - account country
 
       - name: customer_id
         sql: customer_id
         type: string
+        description: >
+          Unique identifier for the customer.
+        meta:
+          synonyms:
+            - customer identifier
+            - client id
+            - account id
 
       - name: customer_status
         sql: customer_status
         type: string
+        description: >
+          Current status of the customer.
+        meta:
+          synonyms:
+            - customer status
+            - client status
+            - account status
+            - customer state
 
       - name: email
         sql: email
         type: string
+        description: >
+          Email address associated with the customer.
+        meta:
+          synonyms:
+            - email address
+            - customer email
+            - client email
 
       - name: first_name
         sql: first_name
         type: string
+        description: >
+          First name of the customer.
+        meta:
+          synonyms:
+            - given name
+            - customer first name
 
       - name: industry
         sql: industry
         type: string
+        description: >
+          Industry associated with the customer's company.
+        meta:
+          synonyms:
+            - company industry
+            - business industry
+            - organization industry
+          category: company
 
       - name: job_title
         sql: job_title
         type: string
+        description: >
+          Job title associated with the customer.
+        meta:
+          synonyms:
+            - job role
+            - role
+            - customer role
+            - position
 
       - name: last_name
         sql: last_name
         type: string
+        description: >
+          Last name of the customer.
+        meta:
+          synonyms:
+            - surname
+            - family name
+            - customer last name
 
       - name: customer_created_at
         sql: customer_created_at
         type: time
+        description: >
+          Timestamp associated with creation of the customer record.
+        meta:
+          synonyms:
+            - customer creation date
+            - customer signup date
+            - customer created date
 
       - name: first_feature_usage_date
         sql: first_feature_usage_date
         type: time
+        description: >
+          Date of the customer's first recorded feature usage.
+        meta:
+          synonyms:
+            - first feature usage
+            - first feature use
+            - initial feature usage
+            - feature adoption date
 
       - name: first_product_event_at
         sql: first_product_event_at
         type: time
+        description: >
+          Timestamp of the customer's first recorded product event.
+        meta:
+          synonyms:
+            - first product event
+            - initial product activity
+            - first product activity
 
       - name: first_session_at
         sql: first_session_at
         type: time
+        description: >
+          Timestamp of the customer's first recorded session.
+        meta:
+          synonyms:
+            - first session
+            - initial session
+            - first login session
+            - first customer session
 
       - name: first_ticket_at
         sql: first_ticket_at
         type: time
+        description: >
+          Timestamp of the customer's first recorded support ticket.
+        meta:
+          synonyms:
+            - first support ticket
+            - initial support ticket
+            - first ticket
+            - first support interaction
 
       - name: latest_feature_usage_date
         sql: latest_feature_usage_date
         type: time
+        description: >
+          Date of the customer's most recent recorded feature usage.
+        meta:
+          synonyms:
+            - latest feature usage
+            - most recent feature use
+            - last feature usage
+            - latest feature activity
 
       - name: latest_product_event_at
         sql: latest_product_event_at
         type: time
+        description: >
+          Timestamp of the customer's most recent recorded product event.
+        meta:
+          synonyms:
+            - latest product event
+            - most recent product activity
+            - last product activity
 
       - name: latest_session_at
         sql: latest_session_at
         type: time
+        description: >
+          Timestamp of the customer's most recent recorded session.
+        meta:
+          synonyms:
+            - latest session
+            - most recent session
+            - last session
+            - latest customer activity
 
       - name: latest_ticket_at
         sql: latest_ticket_at
         type: time
+        description: >
+          Timestamp of the customer's most recent recorded support ticket.
+        meta:
+          synonyms:
+            - latest support ticket
+            - most recent support ticket
+            - last ticket
+            - latest support interaction
 
     measures:
+
       - name: count
         type: count
+        description: >
+          Count of customer records in the current query context.
+        meta:
+          synonyms:
+            - customer count
+            - number of customers
+            - customers
+          category: customer
 
       - name: total_invoiced_amount
         sql: total_invoiced_amount
         type: sum
+        description: >
+          Sum of the total invoiced amount across customers in the
+          current query context.
+        meta:
+          synonyms:
+            - total invoiced amount
+            - invoice amount
+            - invoiced amount
+            - billed amount
+            - total billing
+          category: financial
 
       - name: total_paid_invoice_amount
         sql: total_paid_invoice_amount
         type: sum
+        description: >
+          Sum of the total paid invoice amount across customers in the
+          current query context.
+        meta:
+          synonyms:
+            - total paid invoice amount
+            - paid invoice amount
+            - invoice payments
+            - total payments
+            - paid amount
+          category: financial
 
     pre_aggregations:
       # Pre-aggregation definitions go here.
-      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
-
+      # Learn more in the documentation:
+      # https://cube.dev/docs/caching/pre-aggregations/getting-started

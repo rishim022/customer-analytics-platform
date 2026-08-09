@@ -1,32 +1,95 @@
 cubes:
+
   - name: mart_customer_revenue
+    description: >
+      Customer-level revenue view containing company and customer
+      identifiers along with invoiced and paid invoice amounts.
+
     sql_table: public.mart_customer_revenue
     data_source: default
+
+    meta:
+      business_grain: one row per customer
+      entity: customer
+      synonyms:
+        - customer revenue
+        - customer billing
+        - customer financials
+        - customer invoice activity
 
     joins: []
 
     dimensions:
+
       - name: company_id
         sql: company_id
         type: string
+        description: >
+          Unique identifier for the company associated with the customer.
+        meta:
+          synonyms:
+            - company id
+            - company identifier
+            - organization id
+          category: company
 
       - name: customer_id
         sql: customer_id
         type: string
+        description: >
+          Unique identifier for the customer.
+        meta:
+          synonyms:
+            - customer id
+            - customer identifier
+            - client id
+            - account id
+          category: customer
 
     measures:
+
       - name: count
         type: count
+        description: >
+          Count of customer records in the current query context.
+        meta:
+          synonyms:
+            - customer count
+            - number of customers
+            - customers
+          category: customer
 
       - name: total_invoiced_amount
         sql: total_invoiced_amount
         type: sum
+        description: >
+          Sum of the total invoiced amount across customers in the
+          current query context.
+        meta:
+          synonyms:
+            - total invoiced amount
+            - invoiced amount
+            - invoice amount
+            - billed amount
+            - total billing
+          category: financial
 
       - name: total_paid_invoice_amount
         sql: total_paid_invoice_amount
         type: sum
+        description: >
+          Sum of the total paid invoice amount across customers in the
+          current query context.
+        meta:
+          synonyms:
+            - total paid invoice amount
+            - paid invoice amount
+            - paid amount
+            - invoice payments
+            - total payments
+          category: financial
 
     pre_aggregations:
       # Pre-aggregation definitions go here.
-      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
-
+      # Learn more in the documentation:
+      # https://cube.dev/docs/caching/pre-aggregations/getting-started

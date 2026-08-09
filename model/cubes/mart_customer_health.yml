@@ -1,64 +1,196 @@
 cubes:
+
   - name: mart_customer_health
+    description: >
+      Customer-level health view containing customer lifecycle status,
+      health status, company attributes, and product usage and session
+      activity used to understand customer engagement and health.
+
     sql_table: public.mart_customer_health
     data_source: default
+
+    meta:
+      business_grain: one row per customer
+      entity: customer
+      synonyms:
+        - customer health
+        - account health
+        - client health
+        - customer status
+        - account health status
 
     joins: []
 
     dimensions:
+
       - name: company_id
         sql: company_id
         type: string
+        description: >
+          Unique identifier for the company associated with the customer.
+        meta:
+          synonyms:
+            - company identifier
+            - organization id
+            - company id
+          category: company
 
       - name: company_size
         sql: company_size
         type: string
+        description: >
+          Size classification of the company associated with the customer.
+        meta:
+          synonyms:
+            - company size
+            - organization size
+            - business size
+          category: company
 
       - name: customer_health_status
         sql: customer_health_status
         type: string
+        description: >
+          Health classification assigned to the customer based on the
+          customer health model.
+        meta:
+          synonyms:
+            - customer health
+            - account health
+            - health status
+            - customer health score
+            - account health status
+          category: customer_health
 
       - name: customer_id
         sql: customer_id
         type: string
+        description: >
+          Unique identifier for the customer.
+        meta:
+          synonyms:
+            - customer identifier
+            - customer id
+            - client id
+            - account id
+          category: customer
 
       - name: customer_status
         sql: customer_status
         type: string
+        description: >
+          Current lifecycle or status of the customer.
+        meta:
+          synonyms:
+            - customer status
+            - client status
+            - account status
+            - customer state
+          category: customer
 
       - name: industry
         sql: industry
         type: string
+        description: >
+          Industry associated with the company of the customer.
+        meta:
+          synonyms:
+            - company industry
+            - business industry
+            - organization industry
+            - industry sector
+          category: company
 
       - name: first_feature_usage_date
         sql: first_feature_usage_date
         type: time
+        description: >
+          Date of the customer's first recorded feature usage.
+        meta:
+          synonyms:
+            - first feature usage
+            - first feature use
+            - initial feature usage
+            - feature adoption date
+          category: product_engagement
 
       - name: first_product_event_at
         sql: first_product_event_at
         type: time
+        description: >
+          Timestamp of the customer's first recorded product event.
+        meta:
+          synonyms:
+            - first product event
+            - initial product activity
+            - first product activity
+          category: product_engagement
 
       - name: first_session_at
         sql: first_session_at
         type: time
+        description: >
+          Timestamp of the customer's first recorded session.
+        meta:
+          synonyms:
+            - first session
+            - initial session
+            - first customer session
+            - first login session
+          category: engagement
 
       - name: latest_feature_usage_date
         sql: latest_feature_usage_date
         type: time
+        description: >
+          Date of the customer's most recent recorded feature usage.
+        meta:
+          synonyms:
+            - latest feature usage
+            - most recent feature use
+            - last feature usage
+            - latest feature activity
+          category: product_engagement
 
       - name: latest_product_event_at
         sql: latest_product_event_at
         type: time
+        description: >
+          Timestamp of the customer's most recent recorded product event.
+        meta:
+          synonyms:
+            - latest product event
+            - most recent product activity
+            - last product activity
+          category: product_engagement
 
       - name: latest_session_at
         sql: latest_session_at
         type: time
+        description: >
+          Timestamp of the customer's most recent recorded session.
+        meta:
+          synonyms:
+            - latest session
+            - most recent session
+            - last session
+            - latest customer activity
+          category: engagement
 
     measures:
+
       - name: count
         type: count
+        description: >
+          Count of customer records in the current query context.
+        meta:
+          synonyms:
+            - customer count
+            - number of customers
+            - customers
+          category: customer
 
     pre_aggregations:
       # Pre-aggregation definitions go here.
-      # Learn more in the documentation: https://cube.dev/docs/caching/pre-aggregations/getting-started
-
+      # Learn more in the documentation:
+      # https://cube.dev/docs/caching/pre-aggregations/getting-started
