@@ -1,6 +1,7 @@
 # ================================
 # Data generation & manipulation
 # ================================
+
 Faker
 pandas
 numpy
@@ -9,20 +10,33 @@ pyarrow
 # ================================
 # API ingestion
 # ================================
+
 requests
 
 # ================================
 # AWS
 # ================================
+
 boto3
 python-dotenv
 
 # ================================
-# Data warehouse - Snowflake
+# Data warehouse - Redshift
 # ================================
+
 snowflake-connector-python
+
+# ================================
+# Text-to-SQL / Semantic Layer
+# ================================
+
+PyYAML
+PyJWT
+fastapi
+uvicorn
 
 # ================================
 # Testing
 # ================================
+
 pytest
