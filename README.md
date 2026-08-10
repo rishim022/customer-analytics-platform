@@ -2,7 +2,7 @@
 
 An end-to-end Customer Experience Analytics Platform designed to ingest, transform, model, and analyze customer, product, revenue, and support data.
 
-The platform demonstrates a modern analytics engineering architecture using **Airbyte, AWS S3, Lambda, Glue, Athena, Snowflake, dbt, Airflow, Docker, Cube, and Metabase**, with a natural-language analytics API on top of the semantic layer.
+The platform demonstrates a modern analytics engineering architecture using **Airbyte, AWS S3, Lambda, Glue, Athena, Amazon Redshift Serverless, dbt, Airflow, Docker, Cube, and Metabase**, with a natural-language analytics API built on top of the semantic layer.
 
 ---
 
@@ -33,76 +33,73 @@ The goal of this project is to build a centralized analytics platform that trans
 # 🏗️ Architecture
 
 ```text
-                    ┌──────────────────────┐
-                    │   Source Systems     │
-                    │                      │
-                    │ Customers            │
-                    │ Product Events       │
-                    │ Invoices / Payments  │
-                    │ Support Tickets      │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │       Airbyte        │
-                    │  Data Ingestion / CDC │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │        AWS S3        │
-                    │     Raw Data Lake    │
-                    └──────────┬───────────┘
-                               │
-                    ┌──────────┴───────────┐
-                    │                      │
-                    ▼                      ▼
-             ┌──────────────┐      ┌──────────────┐
-             │ AWS Lambda   │      │ AWS Glue     │
-             │ Processing   │      │ Catalog      │
-             └──────────────┘      └──────┬───────┘
-                                          │
-                                          ▼
-                                   ┌──────────────┐
-                                   │    Athena    │
-                                   │ Data Lake SQL│
-                                   └──────┬───────┘
-                                          │
-                                          ▼
-                                  ┌────────────────┐
-                                  │   Snowflake    │
-                                  │ Data Warehouse │
-                                  └───────┬────────┘
-                                          │
-                                          ▼
-                                  ┌────────────────┐
-                                  │      dbt       │
-                                  │ Transformations│
-                                  │ + Data Models  │
-                                  └───────┬────────┘
-                                          │
-                                          ▼
-                              ┌─────────────────────┐
-                              │ Analytics Marts     │
-                              │                     │
-                              │ Customer 360        │
-                              │ Customer Health     │
-                              │ Customer Revenue    │
-                              │ Product Engagement  │
-                              │ Support Performance │
-                              └──────────┬──────────┘
-                                         │
-                         ┌───────────────┴───────────────┐
-                         │                               │
-                         ▼                               ▼
-                 ┌──────────────┐                ┌──────────────┐
-                 │     Cube     │                │   Metabase   │
-                 │ Semantic     │                │ BI / Dashboards│
-                 │ Layer       │                └──────────────┘
-                 └──────┬───────┘
-                        │
-                        ▼
-                ┌─────────────────┐
-                │ Text-to-SQL API │
-                │    FastAPI      │
-                └─────────────────┘
+                ┌──────────────────────┐
+                │   Source Systems     │
+                │ Customers            │
+                │ Product Events       │
+                │ Invoices / Payments  │
+                │ Support Tickets      │
+                └──────────┬───────────┘
+                           │
+                           ▼
+                ┌──────────────────────┐
+                │       Airbyte        │
+                │   Data Ingestion     │
+                └──────────┬───────────┘
+                           │
+                           ▼
+                ┌──────────────────────┐
+                │        AWS S3        │
+                │      Raw Layer       │
+                └──────────┬───────────┘
+                           │
+                ┌──────────┴───────────┐
+                ▼                      ▼
+         ┌──────────────┐      ┌──────────────┐
+         │ AWS Lambda   │      │ AWS Glue     │
+         │ Processing   │      │ Data Catalog │
+         └──────────────┘      └──────┬───────┘
+                                      │
+                                      ▼
+                               ┌──────────────┐
+                               │    Athena    │
+                               │ Data Lake SQL│
+                               └──────┬───────┘
+                                      │
+                                      ▼
+                          ┌────────────────────┐
+                          │ Amazon Redshift    │
+                          │    Serverless      │
+                          │   Data Warehouse   │
+                          └─────────┬──────────┘
+                                    │
+                                    ▼
+                              ┌────────────┐
+                              │    dbt     │
+                              │ Transform  │
+                              └─────┬──────┘
+                                    │
+                                    ▼
+                          ┌─────────────────────┐
+                          │ Analytics Marts     │
+                          │                     │
+                          │ Customer 360        │
+                          │ Customer Health     │
+                          │ Customer Revenue    │
+                          │ Product Engagement  │
+                          │ Support Performance │
+                          └──────────┬──────────┘
+                                     │
+                                     ▼
+                              ┌──────────────┐
+                              │     Cube     │
+                              │   Semantic   │
+                              │     Layer    │
+                              └──────┬───────┘
+                                     │
+                          ┌──────────┴──────────┐
+                          ▼                     ▼
+                   ┌────────────┐       ┌──────────────┐
+                   │  FastAPI   │       │   Metabase   │
+                   │ Text-to-SQL│       │     BI       │
+                   └────────────┘       └──────────────┘
