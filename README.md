@@ -50,17 +50,19 @@ The goal of this project is to build a centralized analytics platform that trans
 | Cloud                  | AWS                        |
 
 ## 🗂️ Repository Structure
+
+```text
 customer-analytics-platform/
 │
 ├── python/
-│   └── text_to_sql/
-│       ├── app.py
-│       ├── cube_client.py
-│       ├── query_generator.py
-│       └── semantic_schema.py
+│   └── text_to_sql/              # Natural-language analytics API
+│       ├── app.py                # FastAPI application
+│       ├── cube_client.py        # Cube API client
+│       ├── query_generator.py    # NL → Cube query planning
+│       └── semantic_schema.py    # Semantic model metadata
 │
 ├── model/
-│   └── cubes/
+│   └── cubes/                    # Cube semantic definitions
 │       ├── mart_customer_360.yml
 │       ├── mart_customer_health.yml
 │       ├── mart_customer_revenue.yml
@@ -70,27 +72,23 @@ customer-analytics-platform/
 ├── dbt/
 │   └── customer_analytics/
 │       ├── models/
-│       │   ├── staging/
-│       │   ├── intermediate/
-│       │   └── marts/
-│       │
-│       ├── tests/
+│       │   ├── staging/          # Source-aligned models
+│       │   ├── intermediate/     # Reusable business logic
+│       │   └── marts/            # Business-facing models
+│       ├── tests/                # Data quality tests
 │       ├── dbt_project.yml
 │       └── packages.yml
 │
 ├── airflow/
-│   └── dags/
+│   └── dags/                     # Pipeline orchestration
 │
-├── lambda/
-│
-├── docker/
-│
-├── data/
+├── lambda/                       # AWS Lambda processing
+├── docker/                       # Container configuration
+├── data/                         # Local/sample data
 │
 ├── .gitignore
 └── README.md
----
-
+```
 # 🏗️ Architecture
 
 ```text
